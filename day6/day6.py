@@ -1,5 +1,5 @@
-# Part 1
-def find_start_of_packet_marker(buffer, marker_length):
+# Part 1 + 2
+def find_start_of_marker(buffer, marker_length):
     l, r = 0, 0
     seen = set()
     while r < len(buffer):
@@ -20,6 +20,6 @@ test_filename = "day6_test.txt"
 filename = "day6.txt"
 with open(filename) as file:
     for line in file:
-        print(find_start_of_packet_marker(line, 4)) # start-of-packer marker length
-        print(find_start_of_packet_marker(line, 14)) # start-of-message marker length
+        print(find_start_of_marker(line, 4)) # start-of-packer marker length
+        print(find_start_of_marker(line, 14)) # start-of-message marker length
 
