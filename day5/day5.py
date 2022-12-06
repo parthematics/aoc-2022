@@ -1,4 +1,3 @@
-# Part 1
 from re import match
 from collections import deque
 
@@ -15,14 +14,15 @@ def create_stacks(stack_layers, num_stacks):
             stack[crate_num].appendleft(label)
     return stack
 
+# Part 1
 def execute_move_single(stacks, move):
     num_to_pop = move[0]
     from_, to_ = move[1]
     for i in range(num_to_pop):
         curr = stacks[from_].pop()
         stacks[to_].append(curr)
-    return stacks
 
+# Part 2
 def execute_move_multiple(stacks, move):
     num_to_pop = move[0]
     from_, to_ = move[1]
@@ -32,7 +32,6 @@ def execute_move_multiple(stacks, move):
         in_order.append(curr)
     for i in range(len(in_order) - 1, -1, -1):
         stacks[to_].append(in_order[i])
-    return stacks
 
 def find_top_crate_arrangement(filename="day5.txt"):
     stack_layers, moves = [], []
@@ -56,8 +55,8 @@ def find_top_crate_arrangement(filename="day5.txt"):
         part_2_stacks = create_stacks(stack_layers, num_stacks)
 
         for move in moves:
-            part_1_stacks = execute_move_single(part_1_stacks, move)
-            part_2_stacks = execute_move_multiple(part_2_stacks, move)
+            execute_move_single(part_1_stacks, move)
+            execute_move_multiple(part_2_stacks, move)
 
         for stack in part_1_stacks.values():
             part_1_res.append(stack[-1])
