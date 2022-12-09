@@ -1,5 +1,5 @@
 # Part 1 + 2
-def move_rope_n_knots(num_knots, is_test=False):
+def move_rope_with_n_knots(num_knots, is_test=False):
     direction_map = {'U': [0, 1], 'D': [0, -1], 'R': [1, 0], 'L': [-1, 0]}
     directions_to_follow = get_directions(is_test)
     knot_positions = {i: [0, 0] for i in range(num_knots)}
@@ -72,7 +72,7 @@ def get_directions(is_test=False):
     return directions
     
 # Part 1
-print(move_rope_n_knots(num_knots=2))
+print(move_rope_with_n_knots(num_knots=2))
 
 # Part 2
-print(move_rope_n_knots(num_knots=10))
+print(move_rope_with_n_knots(num_knots=10))
