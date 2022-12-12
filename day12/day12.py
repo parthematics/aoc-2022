@@ -18,7 +18,6 @@ def climb_hill_in_fewest_steps(is_test=True):
 
     return (distance_from_S_to_E, min_distance_from_a_to_E)
     
-
 def find_shortest_distance(start_pos, end_pos, grid):
     queue = deque([(0, start_pos)])
     seen = set((start_pos[0], start_pos[1]))
