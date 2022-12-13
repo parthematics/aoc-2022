@@ -27,29 +27,31 @@ def determine_decoder_key(is_test):
     return first_divider_idx * second_divider_idx
 
 def well_ordered(left, right):
-    if isinstance(left, int) and isinstance(right, int):
-        if left < right:
-            return 1
-        elif right < left:
-            return -1
-        else:
-            return 0
-    elif isinstance(left, int) and isinstance(right, list):
-        return well_ordered([left], right)
-    elif isinstance(left, list) and isinstance(right, int):
-        return well_ordered(left, [right])
-    elif not left and right:
-        return 1
-    elif left and not right:
-        return -1
-    elif not left and not right:
-        return 0
-    else:
-        first_comparison = well_ordered(left[0], right[0])
-        if not first_comparison:
-            return well_ordered(left[1:], right[1:])
-        else:
-            return first_comparison
+    match (left, right):
+        case (int(), int()):
+            if left < right:
+                return 1
+            elif right < left:
+                return -1
+            else:
+                return 0
+        case (int(), list()):
+            return well_ordered([left], right)
+        case (list(), int()):
+            return well_ordered(left, [right])
+        case (list(), list()):
+            if not left and right:
+                return 1
+            elif left and not right:
+                return -1
+            elif not left and not right:
+                return 0
+            else:
+                first_comparison = well_ordered(left[0], right[0])
+                if not first_comparison:
+                    return well_ordered(left[1:], right[1:])
+                else:
+                    return first_comparison
 
 print(find_num_of_well_ordered_packets(is_test=False))
 print(determine_decoder_key(is_test=False))
